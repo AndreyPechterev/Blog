@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
     const isAuth = useSelector(checkIsAuth);
+    const user = useSelector(state => state.auth?.user)
     const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -20,8 +21,8 @@ const Navbar = () => {
     };
     return (
         <div className="flex py-4 justify-between items-center">
-            <span className="flex justify-center items-center w-6 h-6 bg-gray-600 text-sm text-white rounded-sm">
-                E
+            <span className="flex justify-center items-center p-2 bg-gray-600 text-sm text-white rounded-sm">
+                {user?.username}
             </span>
             {isAuth && (
                 <ul className="flex gap-8">
@@ -38,7 +39,7 @@ const Navbar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/e"
+                            to="/posts"
                             className="text-sm text-gray-400 hover:text-white"
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined
@@ -49,7 +50,7 @@ const Navbar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/r"
+                            to="/post/new"
                             className="text-sm text-gray-400 hover:text-white"
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined

@@ -23,11 +23,11 @@ function App() {
     return (
         <Layout>
             <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/posts" element={<Posts />} />
+                <Route exact path="/" element={<Main />} />
+                <Route  path="/posts" element={<Posts />} />
                 <Route path="/:id" element={<Post />} />
                 <Route path="/:id/edit" element={<EditPost />} />
-                <Route path="/post/new" element={<AddPost />} />
+                <Route exact path="/post/new" element={<AddPost />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
             </Routes>

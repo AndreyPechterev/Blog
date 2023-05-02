@@ -1,9 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "../utils/axios";
+import PostItem from "../components/PostItem";
 
 const Posts = () => {
-  return (
-    <div>Posts</div>
-  )
-}
+    const [posts, setPosts] = useState([]);
 
-export default Posts
+    const fetchMyPosts = async () => {
+        try {
+            const { data } = await axios.get("/posts/user/me");
+            setPosts(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchMyPosts();
+    }, []);
+
+    return (
+        <div className="w-1/2 mx-auto py-10 flex flex-col gap-10">
+            {posts?.map((post) => (
+                <PostItem key={post._id} post={post} />
+            ))}
+        </div>
+    );
+};
+
+export default Posts;

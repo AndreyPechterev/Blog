@@ -15,7 +15,7 @@ const Register = () => {
     useEffect(() => {
         if (status) toast(status);
         if (isAuth) navigate("/");
-    }, [status, navigate]);
+    }, [status, navigate, isAuth]);
 
     const handleSubmit = () => {
         try {
